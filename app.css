@@ -1,3 +1,15 @@
-body {
-  background-color: #00ff00;
+html, body {
+  font-family: Arial;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+#app {
+  width: 960px;
+  margin: auto;
+}
+
+#app h1 {
+  text-align: center;
 }

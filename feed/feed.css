@@ -32,14 +32,14 @@ html, body {
 }
 
 .donation-alert-text {
-  font-size: 58px;
-  width: 50%;
+  font-size: 48px;
+  width: 60%;
   margin: auto;
 }
 
 .donation-alert-message {
-  font-size: 38px;
-  width: 50%;
+  font-size: 32px;
+  width: 60%;
   margin: auto;
 }
 

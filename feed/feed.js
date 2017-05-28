@@ -88,7 +88,7 @@ function renderFeed(){
       console.log("NEW DONATION", donation);
       audio.play();
       donationAlert.classList.add('fade');
-      donationText.innerHTML = donation.donorName + 'has donated $' + donation.donationAmount + '!';
+      donationText.innerHTML = donation.donorName + ' has donated $' + donation.donationAmount + '!';
       donationMessage.innerHTML = donation.message;
       setTimeout(function(){
         donationText.innerHTML = '';

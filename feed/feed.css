@@ -3,6 +3,7 @@ html, body {
   height: 100%;
   width: 100%;
   margin: 0;
+  font-family: 'Anton', sans-serif;
 }
 
 #app {
@@ -13,6 +14,13 @@ html, body {
 
 .donation-alert {
   text-align: center;
+  color: white;
+  text-shadow:
+       3px 3px 0 #23c1e8,
+     -1px -1px 0 #23c1e8,
+      1px -1px 0 #23c1e8,
+      -1px 1px 0 #23c1e8,
+       1px 1px 0 #23c1e8;
 }
 
 .donation-alert.hidden {
@@ -24,17 +32,13 @@ html, body {
 }
 
 .donation-alert-text {
-  font-size: 40px;
+  font-size: 58px;
   width: 50%;
   margin: auto;
-  background-color: white;
-  padding: 5px;
 }
 
 .donation-alert-message {
-  font-size: 24px;
-  background-color: white;
-  padding: 5px;
+  font-size: 38px;
   width: 50%;
   margin: auto;
 }

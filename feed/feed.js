@@ -56,7 +56,6 @@ function renderFeed(){
   var search = location.search.substring(1);
   var config = JSON.parse('{"' + decodeURIComponent(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}')
 
-  console.log(config);
   var donationAlert = document.createElement('div');
   donationAlert.classList.add('hidden', 'donation-alert');
   var donationText = document.createElement('div');
@@ -83,13 +82,12 @@ function renderFeed(){
   }
 
   fetchInterval = setInterval(function(){
-    fetchRecentDonations(config.participantID).then(console.log)
+    fetchRecentDonations(config.participantID)
   }, CHECK_INTERVAL);
 
   donationsInterval = setInterval(function(){
     var donation = donationsQueue.pop();
     if(!!donation){
-      console.log("NEW DONATION", donation);
       audio.play();
       donationAlert.classList.add('fade');
       donationText.textContent = donation.donorName + ' has donated $' + donation.donationAmount + '!';

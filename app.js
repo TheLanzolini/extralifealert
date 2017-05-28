@@ -7,7 +7,6 @@ function init() {
   var participantID = window.location.search.replace('?', '').split('=')[1];
 
   function renderTutorial(){
-    console.log('rendering the tutorial');
     var title = document.createElement('h1');
     title.innerHTML = 'Extra Life Alerts';
     APP.appendChild(title);

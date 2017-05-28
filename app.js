@@ -183,7 +183,7 @@ function init() {
     TUTORIAL: { renderMethod: renderTutorial },
     SETTINGS: { renderMethod: renderSettings },
     FEED: { renderMethod: renderFeed },
-    currentState: 'TURORIAL',
+    currentState: 'FEED',
     changeState: function(state){
       APP.classList.remove(STATE.currentState.toLowerCase());
       STATE.currentState = state;
@@ -194,7 +194,7 @@ function init() {
       STATE[state].renderMethod();
     }
   }
-  STATE.changeState('TUTORIAL');
+  STATE.changeState('FEED');
   window.STATE = STATE;
 }
 

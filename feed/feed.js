@@ -56,6 +56,9 @@ function renderFeed(){
   var donationAlert = document.createElement('div');
   donationAlert.classList.add('hidden', 'donation-alert');
   var donationText = document.createElement('div');
+  donationText.classList.add('donation-alert-text');
+  var donationMessage = document.createElement('div');
+  donationMessage.classList.add('donation-alert-message');
 
   var audio = document.createElement('audio');
   audio.src = config.audio;
@@ -65,11 +68,13 @@ function renderFeed(){
 
   donationAlert.appendChild(donationImg);
   donationAlert.appendChild(donationText);
+  donationAlert.appendChild(donationMessage);
 
   APP.appendChild(donationAlert);
 
   if(config.debug) {
-    donationText.innerHTML = 'Lorem Ipsum Dolor Sit Amet';
+    donationText.innerHTML = 'User has donated $5!';
+    donationMessage.innerHTML = 'Here is $5, I hope this helps!';
     donationAlert.classList.remove('hidden');
   }
 
@@ -83,7 +88,8 @@ function renderFeed(){
       console.log("NEW DONATION", donation);
       audio.play();
       donationAlert.classList.add('fade');
-      donationText.innerHTML = donation.message;
+      donationText.innerHTML = donation.donorName + 'has donated $' + donation.donationAmount + '!';
+      donationMessage.innerHTML = donation.message;
       setTimeout(function(){
         donationText.innerHTML = '';
       }, 4500);

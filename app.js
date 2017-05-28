@@ -45,7 +45,17 @@ function init() {
     APP.appendChild(settingsButton);
   }
   function renderSettings(){
-    console.log('rendering the settings');
+
+    var config = {
+      image: 'http://lanzo.space/extralifealert/fbLogo.jpg',
+      audio: 'http://lanzo.space/extralifealert/thanks.ogg',
+      participantID: ''
+    }
+
+    if(localStorage.getItem('config')){
+      config = JSON.parse(localStorage.getItem('config'));
+    }
+
     var title = document.createElement('h1');
     title.innerHTML = 'Settings';
     APP.appendChild(title);
@@ -55,6 +65,7 @@ function init() {
     customImageLabel.innerHTML = 'Custom Image URL';
     var customImageInput = document.createElement('input');
     customImageInput.setAttribute('type', 'text');
+    customImageInput.value = config.image;
     customImageWrapper.appendChild(customImageLabel);
     customImageWrapper.appendChild(customImageInput);
 
@@ -63,17 +74,19 @@ function init() {
     customAudioLabel.innerHTML = 'Custom Audio URL';
     var customAudioInput = document.createElement('input');
     customAudioInput.setAttribute('type', 'text');
+    customAudioInput.value = config.audio;
     customAudioWrapper.appendChild(customAudioLabel);
     customAudioWrapper.appendChild(customAudioInput);
 
     var tooltip = document.createElement('div');
-    tooltip.innerHTML = 'Keep fields blank to default image/audio. Check the debug box to open window with unhidden Alert for OBS fiddling.';
+    tooltip.innerHTML = 'Check the debug box to open window with unhidden Alert for OBS fiddling.';
 
     var participantIDWrapper = document.createElement('div');
     var participantIDLabel = document.createElement('label');
     participantIDLabel.innerHTML = 'participantID';
     var participantIDInput = document.createElement('input');
     participantIDInput.setAttribute('type', 'text');
+    participantIDInput.value = config.participantID;
     participantIDWrapper.appendChild(participantIDLabel);
     participantIDWrapper.appendChild(participantIDInput);
 
@@ -82,6 +95,7 @@ function init() {
     debugLabel.innerHTML = 'Debug';
     var debugCheckbox = document.createElement('input');
     debugCheckbox.setAttribute('type', 'checkbox');
+    debugCheckbox.checked = config.debug;
     debugWrapper.appendChild(debugLabel);
     debugWrapper.appendChild(debugCheckbox);
 
@@ -92,38 +106,54 @@ function init() {
     APP.appendChild(customAudioWrapper);
     APP.appendChild(debugWrapper);
 
+    var urlWrapper = document.createElement('div');
+    var urlLink = document.createElement('span');
+    var launchButton = document.createElement('button');
+    launchButton.classList.add('hidden');
+    launchButton.innerHTML = 'Launch!';
+
+    urlWrapper.appendChild(urlLink);
+    urlWrapper.appendChild(launchButton);
+
+    var url;
+
     var feedButton = document.createElement('button');
-    feedButton.innerHTML = 'Save and go to Feed';
+    feedButton.innerHTML = 'Save';
     feedButton.addEventListener('click', function(){
       if(!!customImageInput.value){
         config.image = customImageInput.value;
       }
       if(!!customAudioInput.value){
-        config.audio = customImageInput.value;
+        config.audio = customAudioInput.value;
       }
 
       config.participantID = participantIDInput.value;
 
       if(debugCheckbox.checked) {
         config.debug = true;
+      }else{
+        delete(config.debug);
       }
+
+      localStorage.setItem('config', JSON.stringify(config));
 
       var configUri = Object.keys(config).map(function(k) {
         return encodeURIComponent(k) + "=" + encodeURIComponent(config[k]);
       }).join('&');
 
       var u = location.protocol == 'file:' ? 'file:///C:/Users/TheLa/projects/extralifealert/feed/index.html' : 'http://lanzo.space/extralifealert/feed/';
-      var url = u + '?' + configUri;
+      url = u + '?' + configUri;
+      urlLink.innerHTML = url;
+      launchButton.classList.remove('hidden');
+    });
+
+    launchButton.addEventListener('click', function(){
       openFeedWindow(url, 'Extra Life Alert Feed');
     });
 
     APP.appendChild(feedButton);
+    APP.appendChild(urlWrapper);
 
-  }
-
-  var config = {
-    image: 'http://lanzo.space/extralifealert/fbLogo.jpg',
-    audio: 'http://lanzo.space/extralifealert/thanks.ogg'
   }
 
   var STATE = {

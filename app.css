@@ -13,3 +13,7 @@ html, body {
 #app h1 {
   text-align: center;
 }
+
+.hidden {
+  display: none;
+}

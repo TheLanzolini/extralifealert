@@ -1,27 +1,31 @@
-var test = false;
+var DONATIONS_PER_INTERVAL = 25;
+var CHECK_INTERVAL = 120000;
 var donationsQueue = [];
-var test2 = false;
-var CHECK_INTERVAL = 30000;
 var donationsInterval;
 var fetchInterval;
 
+// Internal Testing
+// var test = false;
+// var test2 = false;
+
 function processDonations(donations) {
   var promise = new Promise(function(resolve, reject){
-    var sliced = donations.slice(0, 10);
+    var sliced = donations.slice(0, DONATIONS_PER_INTERVAL);
     var currentTime = new Date().getTime();
 
-    if(test) {
-      var q = new Date().getTime() - 5;
-      sliced.push({
-        message: "Hello World",
-        createdOn: q,
-        donorName: 'thelanzolini',
-        avatarImageURL: "//assets.donordrive.com/clients/extralife/img/avatar-constituent-default.gif",
-        donationAmount: 5
-      });
-      test2 = true;
-    }
-    test = true;
+    // internal testing
+    // if(test) {
+    //   var q = new Date().getTime() - 5;
+    //   sliced.push({
+    //     message: "Hello World",
+    //     createdOn: q,
+    //     donorName: 'thelanzolini',
+    //     avatarImageURL: "//assets.donordrive.com/clients/extralife/img/avatar-constituent-default.gif",
+    //     donationAmount: 5
+    //   });
+    //   test2 = true;
+    // }
+    // test = true;
 
     sliced.forEach(function(donation, index){
       var donationTime = new Date(donation.createdOn).getTime();

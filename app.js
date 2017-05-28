@@ -1,5 +1,5 @@
-function openFeedWindow(url) {
-  window.open(url, url, 'menubar=0,resizable=1,width=1000,height=600,titlebar=no');
+function openFeedWindow(url, name) {
+  window.open(url, name, 'menubar=0,resizable=1,width=1000,height=600,titlebar=no');
 }
 
 function init() {
@@ -114,7 +114,7 @@ function init() {
 
       var u = location.protocol == 'file:' ? 'file:///C:/Users/TheLa/projects/extralifealert/feed/index.html' : 'http://lanzo.space/extralifealert/feed/';
       var url = u + '?' + configUri;
-      openFeedWindow(url);
+      openFeedWindow(url, 'Extra Life Alert Feed');
     });
 
     APP.appendChild(feedButton);

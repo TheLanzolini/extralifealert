@@ -1,7 +1,7 @@
 var test = false;
 var donationsQueue = [];
 var test2 = false;
-var CHECK_INTERVAL = 5000;
+var CHECK_INTERVAL = 60000;
 var donationsInterval;
 var fetchInterval;
 
@@ -42,7 +42,7 @@ function processDonations(donations) {
 
 function fetchRecentDonations(participantID) {
   if(test2) return;
-  return window.fetch('http://www.extra-life.org/index.cfm?fuseaction=donorDrive.participantDonations&participantID='+ participantID +'&format=json')
+  return window.fetch('https://www.extra-life.org/index.cfm?fuseaction=donorDrive.participantDonations&participantID='+ participantID +'&format=json', { mode: 'cors' })
     .then(function(response){
       return response.json();
     })

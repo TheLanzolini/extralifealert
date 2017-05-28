@@ -42,7 +42,7 @@ function processDonations(donations) {
 
 function fetchRecentDonations(participantID) {
   if(test2) return;
-  return window.fetch('https://www.extra-life.org/index.cfm?fuseaction=donorDrive.participantDonations&participantID='+ participantID +'&format=json')
+  return window.fetch('http://www.extra-life.org/index.cfm?fuseaction=donorDrive.participantDonations&participantID='+ participantID +'&format=json')
     .then(function(response){
       return response.json();
     })

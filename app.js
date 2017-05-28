@@ -55,6 +55,29 @@ function init() {
     faqsWrapper.appendChild(faqsContent);
     APP.appendChild(faqsWrapper);
 
+    var aboutWrapper = document.createElement('div');
+    aboutWrapper.classList.add('about');
+    var aboutTitle = document.createElement('h1');
+    aboutTitle.innerHTML = 'About';
+    var aboutText = document.createElement('div');
+    const aboutTexts = [
+      'This Alert Web App was developed for Extra Life, for free, and can be used for free.',
+      'Thank you for your contribution to this great cause.',
+      'If you have any issues, comments, concerns or questions, email me: <a href="mailto:thelanzolini@gmail.com">thelanzolini@gmail.com</a>',
+      'Developed by TheLanzolini, with some help from Twitch Chat : ). <a target="_blank" href="https://www.extra-life.org/participant/thelanzolini">Extra Life Page</a>, <a target="_blank" href="https://www.twitch.tv/thelanzolini">Twitch</a>'
+    ]
+
+    aboutTexts.forEach(function(text){
+      var textElem = document.createElement('div');
+      textElem.innerHTML = text;
+      aboutText.appendChild(textElem);
+    });
+
+    aboutWrapper.appendChild(aboutTitle);
+    aboutWrapper.appendChild(aboutText);
+
+    APP.appendChild(aboutWrapper);
+
   }
   function renderSettings(){
 

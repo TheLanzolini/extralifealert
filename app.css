@@ -71,6 +71,11 @@ label {
   margin-top: 20px;
 }
 
+.about {
+  margin-top: 40px;
+  text-align: center;
+}
+
 .hidden {
   display: none;
 }

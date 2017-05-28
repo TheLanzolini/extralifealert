@@ -74,7 +74,7 @@ function renderFeed(){
 
   if(config.debug) {
     donationText.innerHTML = 'User has donated $5!';
-    donationMessage.innerHTML = 'Here is $5, I hope this helps!';
+    donationMessage.innerHTML = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec posuere eros, at condimentum ipsum. Mauris et fringilla justo.';
     donationAlert.classList.remove('hidden');
   }
 

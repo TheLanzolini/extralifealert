@@ -12,24 +12,17 @@ function init() {
     title.innerHTML = 'Extra Life Alerts';
     APP.appendChild(title);
 
-    var notParticipantSteps = [
-      'Sign up with extra life <a target="_blank" href="http://extra-life.org">Extra Life</a>',
+    var steps = [
+      'Log In/Sign up with extra life <a target="_blank" href="http://extra-life.org">Extra Life</a>',
       'Navigate to your profile page',
       'Copy your participantID from the URL',
-      'Continue to the Settings'
-    ]
-    var steps = [
-      'The Settings Page will open a window, use Window Capture on it (If using chrome and OBS, you might have to disable hardware acceleration due to black screen -> Settings -> Scroll Down -> Show Advanced Settings -> System -> Uncheck "Use Hardware acceleration when available")',
+      'Continue to the Settings',
+      'Customize your alert box (Optional)',
+      'Hit Save to generate your alertbox URL',
+      'Either Capture the alertbox with Window Capture, or use a BrowserSource Plugin.( <a target="_blank" href="https://obsproject.com/forum/resources/clr-browser-source-plugin-obs-classic-only.22/">OBS</a>, <a target="_blank" href="https://obsproject.com/forum/resources/browser-plugin.115/">OBS Studio</a> )',
       'Start Streaming! Your Donations will appear in this window when you get them!'
     ]
     var ol = document.createElement('ol');
-    if(!participantID) {
-      notParticipantSteps.forEach(function(step){
-        var li = document.createElement('li');
-        li.innerHTML = step;
-        ol.appendChild(li);
-      });
-    }
     steps.forEach(function(step){
       var li = document.createElement('li');
       li.innerHTML = step;
@@ -37,12 +30,31 @@ function init() {
     });
     APP.appendChild(ol);
     var settingsButton = document.createElement('button');
-    settingsButton.innerHTML = 'All Done? Configure Notification >';
+    settingsButton.innerHTML = 'Alert Settings >';
     settingsButton.addEventListener('click', function(){
       STATE.changeState('SETTINGS');
     });
 
     APP.appendChild(settingsButton);
+
+    var faqsWrapper = document.createElement('div');
+    var faqsTitle = document.createElement('h1');
+    faqsTitle.innerHTML = 'Issues you may have.'
+    var faqsContent = document.createElement('div');
+    const faqs = [
+      'If your chrome window is black when capturing, you may have to disable Hardware Acceleration',
+      'Settings -> Scroll Down -> Show Advanced Settings -> System -> "Uncheck Use Hardware Acceleration when available"'
+    ]
+    faqs.forEach(function(faq){
+      var faqElem = document.createElement('div');
+      faqElem.innerHTML = faq;
+      faqsContent.appendChild(faqElem);
+    });
+
+    faqsWrapper.appendChild(faqsTitle);
+    faqsWrapper.appendChild(faqsContent);
+    APP.appendChild(faqsWrapper);
+
   }
   function renderSettings(){
 
@@ -107,7 +119,10 @@ function init() {
     APP.appendChild(debugWrapper);
 
     var urlWrapper = document.createElement('div');
-    var urlLink = document.createElement('span');
+    var urlTooltip = document.createElement('div');
+    var urlLink = document.createElement('textarea');
+    urlLink.classList.add('url-link', 'hidden');
+    urlLink.setAttribute('readonly', '');
     var launchButton = document.createElement('button');
     launchButton.classList.add('hidden');
     launchButton.innerHTML = 'Launch!';
@@ -144,6 +159,7 @@ function init() {
       var u = location.protocol == 'file:' ? 'file:///C:/Users/TheLa/projects/extralifealert/feed/index.html' : 'http://lanzo.space/extralifealert/feed/';
       url = u + '?' + configUri;
       urlLink.innerHTML = url;
+      urlLink.classList.remove('hidden');
       launchButton.classList.remove('hidden');
     });
 

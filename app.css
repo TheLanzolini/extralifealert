@@ -4,15 +4,71 @@ html, body {
   width: 100%;
   margin: 0;
   font-family: 'Roboto Slab', serif;
+  background-color: #23c1e8;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 #app {
   width: 960px;
   margin: auto;
+  background-color: white;
+  padding: 10px;
 }
 
 #app h1 {
   text-align: center;
+  margin: 0;
+  font-weight: normal;
+}
+
+#app.tutorial button {
+  margin: 0 20px;
+}
+
+#app.settings button {
+  margin: 20px 0 0;
+}
+
+button {
+  padding: 10px;
+  font-weight: bold;
+  background-color: #23c1e8;
+  border: none;
+  color: white;
+}
+
+button:focus {
+  outline: none;
+}
+
+button:active {
+  background-color: #039BE5;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+ol {
+  font-size: 20px;
+}
+
+label {
+  margin-right: 10px;
+}
+
+.url-link {
+  width: 100%;
+  padding: 4px 2px;
+  background-color: #efefef;
+  overflow-x: scroll;
+  resize: none;
+  word-wrap: normal;
+  overflow: auto;
+  margin-top: 20px;
 }
 
 .hidden {

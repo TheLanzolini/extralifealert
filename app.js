@@ -12,10 +12,11 @@ function init() {
     APP.appendChild(title);
 
     var steps = [
-      'Log In/Sign up with extra life <a target="_blank" href="http://extra-life.org">Extra Life</a>',
-      'Navigate to your profile page',
-      'Copy your participantID from the URL',
-      'Continue to the Settings',
+      'Log In/Sign up with <a target="_blank" href="http://extra-life.org">Extra Life</a>',
+      'Navigate to your profile page (top right dropdown -> profile)',
+      'Copy your participantID from the URL (the number following "participantID=")',
+      'Come back to this page',
+      'Click the Settings button below',
       'Customize your alert box (Optional)',
       'Hit Save to generate your alertbox URL',
       'Either Capture the alertbox with Window Capture, or use a BrowserSource Plugin.( <a target="_blank" href="https://obsproject.com/forum/resources/clr-browser-source-plugin-obs-classic-only.22/">OBS</a>, <a target="_blank" href="https://obsproject.com/forum/resources/browser-plugin.115/">OBS Studio</a> )',
@@ -63,8 +64,26 @@ function init() {
       'This Alert Web App was developed for Extra Life, for free, and can be used for free.',
       'Thank you for your contribution to this great cause.',
       'If you have any issues, comments, concerns or questions, email me: <a href="mailto:thelanzolini@gmail.com">thelanzolini@gmail.com</a>',
-      'Developed by TheLanzolini, with some help from Twitch Chat : ). <a target="_blank" href="https://www.extra-life.org/participant/thelanzolini">Extra Life Page</a>, <a target="_blank" href="https://www.twitch.tv/thelanzolini">Twitch</a>'
+      'Developed by TheLanzolini, with some help from Twitch Chat : )'
     ]
+
+    var avatarWrapper = document.createElement('div');
+    avatarWrapper.classList.add('avatar-wrapper');
+    var avatarImage = document.createElement('img');
+    // avatarImage.src = 'http://lanzo.space/extralifealert/lanzo_avatar.jpg';
+    avatarImage.src = 'file:///C:/Users/TheLa/projects/extralifealert/lanzo_avatar.jpg';
+    var avatarTwitch = document.createElement('a');
+    avatarTwitch.href = 'http://twitch.tv/thelanzolini';
+    avatarTwitch.textContent = 'twitch.tv/thelanzolini';
+    var avatarExtraLife = document.createElement('a');
+    avatarExtraLife.href = 'https://www.extra-life.org/participant/thelanzolini';
+    avatarExtraLife.textContent = 'extra-life.org/participant/thelanzolini';
+
+    avatarWrapper.appendChild(avatarImage);
+    avatarWrapper.appendChild(avatarTwitch);
+    avatarWrapper.appendChild(avatarExtraLife);
+
+    // <a target="_blank" href="https://www.extra-life.org/participant/thelanzolini">Extra Life Page</a>, <a target="_blank" href="https://www.twitch.tv/thelanzolini">Twitch</a>
 
     aboutTexts.forEach(function(text){
       var textElem = document.createElement('div');
@@ -74,6 +93,7 @@ function init() {
 
     aboutWrapper.appendChild(aboutTitle);
     aboutWrapper.appendChild(aboutText);
+    aboutWrapper.appendChild(avatarWrapper);
 
     APP.appendChild(aboutWrapper);
 

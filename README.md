@@ -14,9 +14,7 @@ All JavaScript, no Libraries or nothin'.
 TheLanzolini thelanzolini@gmail.com [twitch.tv/thelanzolini](http://twitch.tv/thelanzolini)
 
 TODO
-- add OG tags
 - add audio debugging
 - mess with animations
 - blank participantID
-- add Basic tracking
 - add favicon

@@ -7,6 +7,10 @@ html, body {
   background-color: #23c1e8;
 }
 
+a:visited {
+  color: rgb(0, 0, 238);
+}
+
 * {
   box-sizing: border-box;
 }
@@ -69,6 +73,15 @@ label {
   word-wrap: normal;
   overflow: auto;
   margin-top: 20px;
+}
+
+.avatar-wrapper a {
+  display: block;
+}
+
+.avatar-wrapper img {
+  display: inline-block;
+  padding: 5px 0;
 }
 
 .about {

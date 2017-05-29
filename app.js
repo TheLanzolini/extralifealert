@@ -4,7 +4,6 @@ function openFeedWindow(url, name) {
 
 function init() {
   var APP = document.getElementById('app');
-  var participantID = window.location.search.replace('?', '').split('=')[1];
 
   function renderTutorial(){
     var title = document.createElement('h1');

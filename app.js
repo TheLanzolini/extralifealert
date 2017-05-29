@@ -70,8 +70,7 @@ function init() {
     var avatarWrapper = document.createElement('div');
     avatarWrapper.classList.add('avatar-wrapper');
     var avatarImage = document.createElement('img');
-    // avatarImage.src = 'http://lanzo.space/extralifealert/lanzo_avatar.jpg';
-    avatarImage.src = 'file:///C:/Users/TheLa/projects/extralifealert/lanzo_avatar.jpg';
+    avatarImage.src = 'http://lanzo.space/extralifealert/lanzo_avatar.jpg';
     var avatarTwitch = document.createElement('a');
     avatarTwitch.href = 'http://twitch.tv/thelanzolini';
     avatarTwitch.textContent = 'twitch.tv/thelanzolini';

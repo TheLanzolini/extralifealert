@@ -70,9 +70,10 @@ label {
   background-color: #efefef;
   overflow-x: scroll;
   resize: none;
-  word-wrap: normal;
+  word-wrap: break-word;
   overflow: auto;
   margin-top: 20px;
+  height: 100px;
 }
 
 .avatar-wrapper a {
@@ -91,4 +92,8 @@ label {
 
 .hidden {
   display: none;
+}
+
+.invisible {
+  visibility: hidden;
 }

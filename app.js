@@ -121,6 +121,9 @@ function init() {
     customImageInput.value = config.image;
     customImageWrapper.appendChild(customImageLabel);
     customImageWrapper.appendChild(customImageInput);
+    if(config.noImage){
+      customImageWrapper.classList.add('invisible');
+    }
 
     var customAudioWrapper = document.createElement('div');
     var customAudioLabel = document.createElement('label');
@@ -130,6 +133,9 @@ function init() {
     customAudioInput.value = config.audio;
     customAudioWrapper.appendChild(customAudioLabel);
     customAudioWrapper.appendChild(customAudioInput);
+    if(config.noAudio){
+      customAudioWrapper.classList.add('invisible');
+    }
 
     var tooltip = document.createElement('div');
     tooltip.innerHTML = 'Check the debug box to open window with unhidden Alert for OBS fiddling.';
@@ -143,6 +149,30 @@ function init() {
     participantIDWrapper.appendChild(participantIDLabel);
     participantIDWrapper.appendChild(participantIDInput);
 
+    var noImageWrapper = document.createElement('div');
+    var noImageLabel = document.createElement('label');
+    noImageLabel.innerHTML = 'Disable Image';
+    var noImageCheckbox = document.createElement('input');
+    noImageCheckbox.setAttribute('type', 'checkbox');
+    noImageCheckbox.checked = config.noImage;
+    noImageWrapper.appendChild(noImageLabel);
+    noImageWrapper.appendChild(noImageCheckbox);
+    noImageCheckbox.addEventListener('click', function(){
+      customImageWrapper.classList[noImageCheckbox.checked ? 'add' : 'remove']('invisible');
+    });
+
+    var noAudioWrapper = document.createElement('div');
+    var noAudioLabel = document.createElement('label');
+    noAudioLabel.innerHTML = 'Disable Audio';
+    var noAudioCheckbox = document.createElement('input');
+    noAudioCheckbox.setAttribute('type', 'checkbox');
+    noAudioCheckbox.checked = config.noAudio;
+    noAudioWrapper.appendChild(noAudioLabel);
+    noAudioWrapper.appendChild(noAudioCheckbox);
+    noAudioCheckbox.addEventListener('click', function(){
+      customAudioWrapper.classList[noAudioCheckbox.checked ? 'add' : 'remove']('invisible');
+    });
+
     var debugWrapper = document.createElement('div');
     var debugLabel = document.createElement('label');
     debugLabel.innerHTML = 'Debug';
@@ -154,9 +184,11 @@ function init() {
 
 
     APP.appendChild(participantIDWrapper);
-    APP.appendChild(tooltip);
+    APP.appendChild(noImageWrapper);
+    APP.appendChild(noAudioWrapper);
     APP.appendChild(customImageWrapper);
     APP.appendChild(customAudioWrapper);
+    APP.appendChild(tooltip);
     APP.appendChild(debugWrapper);
 
     var urlWrapper = document.createElement('div');
@@ -194,6 +226,16 @@ function init() {
         config.debug = true;
       }else{
         delete(config.debug);
+      }
+      if(noImageCheckbox.checked) {
+        config.noImage = true;
+      }else{
+        delete(config.noImage);
+      }
+      if(noAudioCheckbox.checked) {
+        config.noAudio = true;
+      }else{
+        delete(config.noAudio);
       }
 
       localStorage.setItem('config', JSON.stringify(config));

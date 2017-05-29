@@ -3,29 +3,24 @@ var CHECK_INTERVAL = 120000;
 var donationsQueue = [];
 var donationsInterval;
 var fetchInterval;
-
-// Internal Testing
-// var test = false;
-// var test2 = false;
+var DEBUG = false;
 
 function processDonations(donations) {
   var promise = new Promise(function(resolve, reject){
     var sliced = donations.slice(0, DONATIONS_PER_INTERVAL);
     var currentTime = new Date().getTime();
 
-    // internal testing
-    // if(test) {
-    //   var q = new Date().getTime() - 5;
-    //   sliced.push({
-    //     message: "Hello World",
-    //     createdOn: q,
-    //     donorName: 'thelanzolini',
-    //     avatarImageURL: "//assets.donordrive.com/clients/extralife/img/avatar-constituent-default.gif",
-    //     donationAmount: 5
-    //   });
-    //   test2 = true;
-    // }
-    // test = true;
+    if(DEBUG) {
+      var q = new Date().getTime() - 5;
+      var debugDonation = {
+        message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse lacinia massa ac mi facilisis, eu commodo felis dictum. Duis ullamcorper orci at malesuada commodo. Proin imperdiet vulputate mollis.",
+        createdOn: q,
+        donorName: 'thelanzolini',
+        avatarImageURL: "//assets.donordrive.com/clients/extralife/img/avatar-constituent-default.gif",
+        donationAmount: 5
+      }
+      sliced.push(debugDonation);
+    }
 
     sliced.forEach(function(donation, index){
       var donationTime = new Date(donation.createdOn).getTime();
@@ -41,12 +36,16 @@ function processDonations(donations) {
 }
 
 function fetchRecentDonations(participantID) {
-  if(test2) return;
+  if(DEBUG){
+    var promise = new Promise(function(resolve){
+      return resolve([]);
+    });
+    return promise;
+  }
   return window.fetch('https://www.extra-life.org/index.cfm?fuseaction=donorDrive.participantDonations&participantID='+ participantID +'&format=json', { mode: 'cors' })
     .then(function(response){
       return response.json();
     })
-    .then(processDonations)
   ;
 }
 
@@ -63,40 +62,47 @@ function renderFeed(){
   var donationMessage = document.createElement('div');
   donationMessage.classList.add('donation-alert-message');
 
-  var audio = document.createElement('audio');
-  audio.src = config.audio;
+  if(!config.noAudio){
+    var audio = document.createElement('audio');
+    audio.src = config.audio;
+  }
 
-  var donationImg = document.createElement('img');
-  donationImg.src = config.image;
+  if(!config.noImage){
+    var donationImg = document.createElement('img');
+    donationImg.src = config.image;
+    donationAlert.appendChild(donationImg);
+  }
 
-  donationAlert.appendChild(donationImg);
+
   donationAlert.appendChild(donationText);
   donationAlert.appendChild(donationMessage);
 
   APP.appendChild(donationAlert);
 
   if(config.debug) {
-    donationText.innerHTML = 'User has donated $5!';
-    donationMessage.innerHTML = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec posuere eros, at condimentum ipsum. Mauris et fringilla justo.';
-    donationAlert.classList.remove('hidden');
+    DEBUG = true;
+    CHECK_INTERVAL = 10000;
   }
 
   fetchInterval = setInterval(function(){
-    fetchRecentDonations(config.participantID)
+    fetchRecentDonations(config.participantID).then(processDonations)
   }, CHECK_INTERVAL);
 
   donationsInterval = setInterval(function(){
     var donation = donationsQueue.pop();
     if(!!donation){
-      audio.play();
+      if(!config.noAudio){
+        audio.play();
+      }
       donationAlert.classList.add('fade');
       donationText.textContent = donation.donorName + ' has donated $' + donation.donationAmount + '!';
       donationMessage.textContent = donation.message;
       setTimeout(function(){
         donationText.innerHTML = '';
-      }, 4500);
+        donationAlert.classList.remove('fade');
+      }, 7000);
     }
-  }, 5000);
+  }, 10000);
 
 }
 

@@ -19,3 +19,4 @@ TODO
 - mess with animations
 - blank participantID
 - add Basic tracking
+- add favicon

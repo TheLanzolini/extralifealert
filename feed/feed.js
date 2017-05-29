@@ -5,6 +5,17 @@ var donationsInterval;
 var fetchInterval;
 var DEBUG = false;
 
+window.testNotification = function(){
+  var q = new Date().getTime() - 5;
+  donationsQueue.push({
+    message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse lacinia massa ac mi facilisis, eu commodo felis dictum. Duis ullamcorper orci at malesuada commodo. Proin imperdiet vulputate mollis.",
+    createdOn: q,
+    donorName: 'thelanzolini',
+    avatarImageURL: "//assets.donordrive.com/clients/extralife/img/avatar-constituent-default.gif",
+    donationAmount: 5
+  });
+}
+
 function processDonations(donations) {
   var promise = new Promise(function(resolve, reject){
     var sliced = donations.slice(0, DONATIONS_PER_INTERVAL);
@@ -43,7 +54,19 @@ function fetchRecentDonations(participantID) {
     return promise;
   }
   return window.fetch('https://www.extra-life.org/index.cfm?fuseaction=donorDrive.participantDonations&participantID='+ participantID +'&format=json', { mode: 'cors' })
+    .catch(function(error){
+      alert('Couldn\'t fetch donations. Check your participantID... or your internet connection')
+    })
     .then(function(response){
+      if(!response){
+        var promise = new Promise(function(resolve, reject){
+          resolve([]);
+        });
+        return promise;
+      }
+      if(!response.ok){
+        alert(response.statusText);
+      }
       return response.json();
     })
   ;

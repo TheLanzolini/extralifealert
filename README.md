@@ -15,5 +15,3 @@ TheLanzolini thelanzolini@gmail.com [twitch.tv/thelanzolini](http://twitch.tv/th
 
 TODO
 - mess with animations
-- add favicon
-- handle error

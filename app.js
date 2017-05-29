@@ -11,6 +11,23 @@ function init() {
     title.innerHTML = 'Extra Life Alerts';
     APP.appendChild(title);
 
+    var alreadyKnow = document.createElement('div');
+    alreadyKnow.classList.add('already-know');
+    alreadyKnowText = document.createElement('div');
+    alreadyKnowText.innerHTML = 'Have your participantID and know what to do?';
+    alreadyKnowButton = document.createElement('button');
+    alreadyKnowButton.innerHTML = 'Go Right to Settings >';
+    alreadyKnowButton.addEventListener('click', function(){
+      STATE.changeState('SETTINGS');
+    });
+    alreadyKnow.appendChild(alreadyKnowText);
+    alreadyKnow.appendChild(alreadyKnowButton);
+    APP.appendChild(alreadyKnow);
+
+    var tutorialTitle = document.createElement('h1');
+    tutorialTitle.innerHTML = 'Getting Started';
+    APP.appendChild(tutorialTitle);
+
     var steps = [
       'Log In/Sign up with <a target="_blank" href="http://extra-life.org">Extra Life</a>',
       'Navigate to your profile page (top right dropdown -> profile)',
@@ -43,7 +60,9 @@ function init() {
     var faqsContent = document.createElement('div');
     const faqs = [
       'If your chrome window is black when capturing, you may have to disable Hardware Acceleration',
-      'Settings -> Scroll Down -> Show Advanced Settings -> System -> "Uncheck Use Hardware Acceleration when available"'
+      'Settings -> Scroll Down -> Show Advanced Settings -> System -> "Uncheck Use Hardware Acceleration when available"',
+      'If your custom Image/Audio file(s) aren\'t playing, check to see if they are https://',
+      'We can only use images and audio under http://'
     ]
     faqs.forEach(function(faq){
       var faqElem = document.createElement('div');
@@ -74,15 +93,20 @@ function init() {
     var avatarTwitch = document.createElement('a');
     avatarTwitch.href = 'http://twitch.tv/thelanzolini';
     avatarTwitch.textContent = 'twitch.tv/thelanzolini';
+    avatarTwitch.target = '_blank';
     var avatarExtraLife = document.createElement('a');
     avatarExtraLife.href = 'https://www.extra-life.org/participant/thelanzolini';
     avatarExtraLife.textContent = 'extra-life.org/participant/thelanzolini';
+    avatarExtraLife.target = '_blank';
+    var avatarGithub = document.createElement('a');
+    avatarGithub.href = 'http://github.com/thelanzolini/extralifealert';
+    avatarGithub.textContent = 'github.com/thelanzolini/extralifealert';
+    avatarGithub.target = '_blank';
 
     avatarWrapper.appendChild(avatarImage);
     avatarWrapper.appendChild(avatarTwitch);
     avatarWrapper.appendChild(avatarExtraLife);
-
-    // <a target="_blank" href="https://www.extra-life.org/participant/thelanzolini">Extra Life Page</a>, <a target="_blank" href="https://www.twitch.tv/thelanzolini">Twitch</a>
+    avatarWrapper.appendChild(avatarGithub);
 
     aboutTexts.forEach(function(text){
       var textElem = document.createElement('div');
@@ -102,7 +126,9 @@ function init() {
     var config = {
       image: 'http://lanzo.space/extralifealert/fbLogo.jpg',
       audio: 'http://lanzo.space/extralifealert/thanks.ogg',
-      participantID: ''
+      participantID: '',
+      noImage: false,
+      noAudio: false
     }
 
     if(localStorage.getItem('config')){
@@ -113,9 +139,17 @@ function init() {
     title.innerHTML = 'Settings';
     APP.appendChild(title);
 
+    var backButton = document.createElement('div');
+    backButton.classList.add('back-button');
+    backButton.innerHTML = 'Go Back';
+    backButton.addEventListener('click', function(){
+      STATE.changeState('TUTORIAL');
+    });
+    APP.appendChild(backButton);
+
     var customImageWrapper = document.createElement('div');
     var customImageLabel = document.createElement('label');
-    customImageLabel.innerHTML = 'Custom Image URL';
+    customImageLabel.innerHTML = 'Image URL';
     var customImageInput = document.createElement('input');
     customImageInput.setAttribute('type', 'text');
     customImageInput.value = config.image;
@@ -127,7 +161,7 @@ function init() {
 
     var customAudioWrapper = document.createElement('div');
     var customAudioLabel = document.createElement('label');
-    customAudioLabel.innerHTML = 'Custom Audio URL';
+    customAudioLabel.innerHTML = 'Audio URL';
     var customAudioInput = document.createElement('input');
     customAudioInput.setAttribute('type', 'text');
     customAudioInput.value = config.audio;
@@ -151,26 +185,26 @@ function init() {
 
     var noImageWrapper = document.createElement('div');
     var noImageLabel = document.createElement('label');
-    noImageLabel.innerHTML = 'Disable Image';
+    noImageLabel.innerHTML = 'Enable Image';
     var noImageCheckbox = document.createElement('input');
     noImageCheckbox.setAttribute('type', 'checkbox');
-    noImageCheckbox.checked = config.noImage;
+    noImageCheckbox.checked = !config.noImage;
     noImageWrapper.appendChild(noImageLabel);
     noImageWrapper.appendChild(noImageCheckbox);
     noImageCheckbox.addEventListener('click', function(){
-      customImageWrapper.classList[noImageCheckbox.checked ? 'add' : 'remove']('invisible');
+      customImageWrapper.classList[!noImageCheckbox.checked ? 'add' : 'remove']('invisible');
     });
 
     var noAudioWrapper = document.createElement('div');
     var noAudioLabel = document.createElement('label');
-    noAudioLabel.innerHTML = 'Disable Audio';
+    noAudioLabel.innerHTML = 'Enable Audio';
     var noAudioCheckbox = document.createElement('input');
     noAudioCheckbox.setAttribute('type', 'checkbox');
-    noAudioCheckbox.checked = config.noAudio;
+    noAudioCheckbox.checked = !config.noAudio;
     noAudioWrapper.appendChild(noAudioLabel);
     noAudioWrapper.appendChild(noAudioCheckbox);
     noAudioCheckbox.addEventListener('click', function(){
-      customAudioWrapper.classList[noAudioCheckbox.checked ? 'add' : 'remove']('invisible');
+      customAudioWrapper.classList[!noAudioCheckbox.checked ? 'add' : 'remove']('invisible');
     });
 
     var debugWrapper = document.createElement('div');
@@ -227,12 +261,12 @@ function init() {
       }else{
         delete(config.debug);
       }
-      if(noImageCheckbox.checked) {
+      if(!noImageCheckbox.checked) {
         config.noImage = true;
       }else{
         delete(config.noImage);
       }
-      if(noAudioCheckbox.checked) {
+      if(!noAudioCheckbox.checked) {
         config.noAudio = true;
       }else{
         delete(config.noAudio);

@@ -36,6 +36,30 @@ a:visited {
   margin: 20px 0 0;
 }
 
+#app.settings {
+  font-size: 18px;
+}
+
+#app.tutorial .already-know {
+  font-size: 20px;
+  padding: 20px 0;
+  text-align: center;
+}
+
+#app.tutorial .already-know > div {
+  padding: 10px 0;
+}
+
+.back-button {
+  position: absolute;
+  top: 2px;
+  color: blue;
+  text-decoration: underline;
+}
+.back-button:hover {
+  cursor: pointer;
+}
+
 button {
   padding: 10px;
   font-weight: bold;

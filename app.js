@@ -176,6 +176,11 @@ function init() {
     var feedButton = document.createElement('button');
     feedButton.innerHTML = 'Save';
     feedButton.addEventListener('click', function(){
+      if(!participantIDInput.value){
+        alert('participantID Field Left Blank, please enter your participantID');
+        return;
+      }
+
       if(!!customImageInput.value){
         config.image = customImageInput.value;
       }

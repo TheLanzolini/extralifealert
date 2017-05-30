@@ -12,6 +12,4 @@ All JavaScript, no Libraries or nothin'.
 
 # Author
 TheLanzolini thelanzolini@gmail.com [twitch.tv/thelanzolini](http://twitch.tv/thelanzolini)
-
-TODO
-- mess with animations
+- audio volume control

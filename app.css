@@ -128,6 +128,10 @@ label {
   text-align: center;
 }
 
+#app.settings button.copy-button{
+  margin-left: 20px;
+}
+
 .hidden {
   display: none;
 }

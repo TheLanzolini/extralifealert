@@ -306,9 +306,26 @@ function init() {
     var launchButton = document.createElement('button');
     launchButton.classList.add('hidden');
     launchButton.innerHTML = 'Launch!';
+    var copyButton = document.createElement('button');
+    copyButton.classList.add('copy-button', 'hidden');
+    copyButton.innerHTML = 'Copy to Clipboard';
+    var copyText = document.createElement('div');
+    copyButton.addEventListener('click', function(){
+      urlLink.select();
+      try {
+        document.execCommand('copy');
+        urlLink.blur();
+        copyText.innerHTML = 'Copied!';
+        setTimeout(function(){ copyText.innerHTML = ''; }, 3000);
+      }catch (err) {
+        copyText.innerHTML = 'Press Ctrl/Cmd +C to copy';
+      }
+    });
 
     urlWrapper.appendChild(urlLink);
+    urlWrapper.appendChild(copyText);
     urlWrapper.appendChild(launchButton);
+    urlWrapper.appendChild(copyButton);
 
     var url;
 
@@ -357,6 +374,7 @@ function init() {
       urlLink.innerHTML = url;
       urlLink.classList.remove('hidden');
       launchButton.classList.remove('hidden');
+      copyButton.classList.remove('hidden');
     });
 
     launchButton.addEventListener('click', function(){

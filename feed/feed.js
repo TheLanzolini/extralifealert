@@ -87,6 +87,7 @@ function renderFeed(){
 
   if(!config.noAudio){
     var audio = document.createElement('audio');
+    audio.volume = (config.volume / 100);
     audio.src = config.audio;
   }
 

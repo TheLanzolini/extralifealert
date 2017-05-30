@@ -128,7 +128,8 @@ function init() {
       participantID: '',
       noImage: false,
       noAudio: false,
-      animation: 'fade'
+      animation: 'fade',
+      volume: 50
     }
 
     if(localStorage.getItem('config')){
@@ -203,6 +204,25 @@ function init() {
     noImageLabel.setAttribute('for', 'no-image');
     noImageCheckbox.id = 'no-image';
 
+    var volumeWrapper = document.createElement('div');
+    volumeWrapper.classList.add('volume');
+    var volumeLabel = document.createElement('div');
+    var volumeLevel = document.createElement('span');
+    volumeLevel.innerHTML = (config.volume / 10);
+    volumeLabel.setAttribute('for', 'volume');
+    volumeLabel.innerHTML = 'Notification Volume';
+    var volumeInput = document.createElement('input');
+    volumeInput.setAttribute('type', 'range');
+    volumeInput.setAttribute('step', '10');
+    volumeInput.value = config.volume;
+    volumeInput.id = 'volume';
+    volumeInput.addEventListener('input', function(){
+      volumeLevel.innerHTML = (volumeInput.value / 10);
+    });
+    volumeWrapper.appendChild(volumeLabel);
+    volumeWrapper.appendChild(volumeLevel);
+    volumeWrapper.appendChild(volumeInput);
+
     var noAudioWrapper = document.createElement('div');
     var noAudioLabel = document.createElement('label');
     noAudioLabel.innerHTML = 'Enable Audio';
@@ -213,6 +233,7 @@ function init() {
     noAudioWrapper.appendChild(noAudioCheckbox);
     noAudioCheckbox.addEventListener('click', function(){
       customAudioWrapper.classList[!noAudioCheckbox.checked ? 'add' : 'remove']('invisible');
+      volumeWrapper.classList[!noAudioCheckbox.checked ? 'add' : 'remove']('invisible');
     });
     noAudioLabel.setAttribute('for', 'no-audio');
     noAudioCheckbox.id = 'no-audio';
@@ -269,8 +290,12 @@ function init() {
     APP.appendChild(noAudioWrapper);
     APP.appendChild(customImageWrapper);
     APP.appendChild(customAudioWrapper);
+    APP.appendChild(document.createElement('br'));
+    APP.appendChild(volumeWrapper);
+    APP.appendChild(document.createElement('br'));
     APP.appendChild(tooltip);
     APP.appendChild(debugWrapper);
+    APP.appendChild(document.createElement('br'));
     APP.appendChild(animationWrapper);
 
     var urlWrapper = document.createElement('div');
@@ -303,6 +328,7 @@ function init() {
       }
 
       config.participantID = participantIDInput.value;
+      config.volume = volumeInput.value;
 
       if(debugCheckbox.checked) {
         config.debug = true;

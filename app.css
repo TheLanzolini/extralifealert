@@ -58,6 +58,12 @@ a:visited {
   padding: 10px 0;
 }
 
+.volume > span {
+  text-align: center;
+  display: inline-block;
+  min-width: 20px;
+}
+
 .back-button {
   position: absolute;
   top: 2px;

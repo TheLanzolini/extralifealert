@@ -104,7 +104,7 @@ function renderFeed(){
 
   if(config.debug) {
     DEBUG = true;
-    CHECK_INTERVAL = 10000;
+    CHECK_INTERVAL = 15000;
   }
 
   fetchInterval = setInterval(function(){

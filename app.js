@@ -35,7 +35,7 @@ function init() {
       'Click the Settings button below',
       'Customize your alert box (Optional)',
       'Hit Save to generate your alertbox URL',
-      'Either Capture the alertbox with Window Capture, or use a BrowserSource Plugin.( <a target="_blank" href="https://obsproject.com/forum/resources/clr-browser-source-plugin-obs-classic-only.22/">OBS</a>, <a target="_blank" href="https://obsproject.com/forum/resources/browser-plugin.115/">OBS Studio</a> )',
+      'Either Capture the alertbox with a BrowserSource Plugin for best results.( <a target="_blank" href="https://obsproject.com/forum/resources/clr-browser-source-plugin-obs-classic-only.22/">OBS</a>, <a target="_blank" href="https://obsproject.com/forum/resources/browser-plugin.115/">OBS Studio</a> ) or with Window Capture.',
       'Start Streaming! Your Donations will appear in this window when you get them!'
     ]
     var ol = document.createElement('ol');
@@ -378,7 +378,7 @@ function init() {
     });
 
     launchButton.addEventListener('click', function(){
-      openFeedWindow(url, 'Extra Life Alert Feed');
+      openFeedWindow(url + '&green=true', 'Extra Life Alert Feed');
     });
 
     APP.appendChild(feedButton);

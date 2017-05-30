@@ -78,6 +78,10 @@ function renderFeed(){
   var search = location.search.substring(1);
   var config = JSON.parse('{"' + decodeURIComponent(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}')
 
+  if(config.green){
+    APP.classList.add('green');
+  }
+
   var donationAlert = document.createElement('div');
   donationAlert.classList.add('hidden', 'donation-alert');
   var donationText = document.createElement('div');

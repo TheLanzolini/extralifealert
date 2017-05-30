@@ -10,6 +10,7 @@ html, body {
   width: 100%;
   height: 100%;
   background-color: #00ff00;
+  overflow: hidden;
 }
 
 .donation-alert {
@@ -53,7 +54,7 @@ html, body {
   0% {
     opacity: 0;
   }
-  15% {
+  10% {
     opacity: 1.0;
   }
   90% {
@@ -61,5 +62,140 @@ html, body {
   }
   100% {
     opacity: 0;
+  }
+}
+
+.donation-alert.slide {
+  animation-name: slide;
+  animation-duration: 7s;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes slide {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+  90% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
+
+.donation-alert.swing {
+  animation-name: swing;
+  animation-duration: 7s;
+  animation-timing-function: ease-in-out;
+  transform-origin: top;
+}
+
+@keyframes swing {
+  0% {
+    opacity: 0;
+    transform: rotateX(-90deg);
+  }
+  10% {
+    opacity: 1;
+    transform: rotateX(0deg);
+  }
+  90% {
+    opacity: 1;
+    transform: rotateX(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: rotateX(-90deg);
+  }
+}
+
+.donation-alert.drop {
+  animation-name: drop;
+  animation-duration: 7s;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes drop {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(-5%);
+  }
+  90% {
+    opacity: 1;
+    transform: translateY(5%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}
+
+.donation-alert.newspaper {
+  animation-name: newspaper;
+  animation-duration: 7s;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes newspaper {
+  0% {
+    opacity: 0;
+    transform: scale(0.0) rotate(0deg);
+  }
+  10% {
+    opacity: 1;
+    transform: scale(1.0) rotate(1080deg);
+  }
+  90% {
+    opacity: 1;
+    transform: scale(1.0) rotate(1080deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.0) rotate(1080deg);
+  }
+}
+
+.donation-alert.lightspeed {
+  animation-name: lightspeed;
+  animation-duration: 7s;
+  animation-timing-function: ease-in-out;
+  transform-origin: bottom;
+}
+
+@keyframes lightspeed {
+  0% {
+    opacity: 0;
+    transform: translateX(200%) skew(-10deg);
+  }
+  10% {
+    opacity: 1;
+    transform: translateX(0) skew(10deg);
+  }
+  12% {
+    opacity: 1;
+    transform: translateX(0) skew(-5deg);
+  }
+  15% {
+    opacity: 1;
+    transform: translateX(0) skew(0deg);
+  }
+  90% {
+    opacity: 1;
+    transform: translateX(0) skew(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-200%) skew(-20deg);
   }
 }

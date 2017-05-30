@@ -96,7 +96,6 @@ function renderFeed(){
     donationAlert.appendChild(donationImg);
   }
 
-
   donationAlert.appendChild(donationText);
   donationAlert.appendChild(donationMessage);
 
@@ -117,12 +116,12 @@ function renderFeed(){
       if(!config.noAudio){
         audio.play();
       }
-      donationAlert.classList.add('fade');
+      donationAlert.classList.add(config.animation);
       donationText.textContent = donation.donorName + ' has donated $' + donation.donationAmount + '!';
       donationMessage.textContent = donation.message;
       setTimeout(function(){
         donationText.innerHTML = '';
-        donationAlert.classList.remove('fade');
+        donationAlert.classList.remove(config.animation);
       }, 7000);
     }
   }, 10000);

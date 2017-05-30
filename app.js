@@ -127,7 +127,8 @@ function init() {
       audio: 'http://lanzo.space/extralifealert/thanks.ogg',
       participantID: '',
       noImage: false,
-      noAudio: false
+      noAudio: false,
+      animation: 'fade'
     }
 
     if(localStorage.getItem('config')){
@@ -154,6 +155,8 @@ function init() {
     customImageInput.value = config.image;
     customImageWrapper.appendChild(customImageLabel);
     customImageWrapper.appendChild(customImageInput);
+    customImageLabel.setAttribute('for', 'custom-image');
+    customImageInput.id = 'custom-image';
     if(config.noImage){
       customImageWrapper.classList.add('invisible');
     }
@@ -166,6 +169,8 @@ function init() {
     customAudioInput.value = config.audio;
     customAudioWrapper.appendChild(customAudioLabel);
     customAudioWrapper.appendChild(customAudioInput);
+    customAudioLabel.setAttribute('for', 'custom-audio');
+    customAudioInput.id = 'custom-audio';
     if(config.noAudio){
       customAudioWrapper.classList.add('invisible');
     }
@@ -181,6 +186,8 @@ function init() {
     participantIDInput.value = config.participantID;
     participantIDWrapper.appendChild(participantIDLabel);
     participantIDWrapper.appendChild(participantIDInput);
+    participantIDLabel.setAttribute('for', 'participantID');
+    participantIDInput.id = 'participantID';
 
     var noImageWrapper = document.createElement('div');
     var noImageLabel = document.createElement('label');
@@ -193,6 +200,8 @@ function init() {
     noImageCheckbox.addEventListener('click', function(){
       customImageWrapper.classList[!noImageCheckbox.checked ? 'add' : 'remove']('invisible');
     });
+    noImageLabel.setAttribute('for', 'no-image');
+    noImageCheckbox.id = 'no-image';
 
     var noAudioWrapper = document.createElement('div');
     var noAudioLabel = document.createElement('label');
@@ -205,6 +214,8 @@ function init() {
     noAudioCheckbox.addEventListener('click', function(){
       customAudioWrapper.classList[!noAudioCheckbox.checked ? 'add' : 'remove']('invisible');
     });
+    noAudioLabel.setAttribute('for', 'no-audio');
+    noAudioCheckbox.id = 'no-audio';
 
     var debugWrapper = document.createElement('div');
     var debugLabel = document.createElement('label');
@@ -214,6 +225,43 @@ function init() {
     debugCheckbox.checked = config.debug;
     debugWrapper.appendChild(debugLabel);
     debugWrapper.appendChild(debugCheckbox);
+    debugLabel.setAttribute('for', 'debug');
+    debugCheckbox.id = 'debug';
+
+    var animationWrapper = document.createElement('div');
+    var animationLabel = document.createElement('div');
+    animationLabel.innerHTML = 'Animation';
+    var animations = [
+      'fade',
+      'slide',
+      'swing',
+      'drop',
+      'newspaper',
+      'lightspeed'
+    ]
+    animationWrapper.appendChild(animationLabel);
+    animations.forEach(function(animation, index){
+      var animationRadio = document.createElement('input');
+      if(!config.animation && index == 0){
+        animationRadio.checked = true;
+        config.animation = animation;
+      }else if(animation == config.animation){
+        animationRadio.checked = true;
+      }
+      animationRadio.setAttribute('type', 'radio');
+      var animationRadioLabel = document.createElement('label');
+      animationRadioLabel.innerHTML = animation;
+      animationRadioLabel.setAttribute('for', animation);
+      animationRadio.setAttribute('name', 'animation');
+      animationRadio.setAttribute('value', animation);
+      animationRadio.id = animation;
+      animationRadio.addEventListener('click', function(){
+        config.animation = animation;
+      });
+      animationWrapper.appendChild(animationRadio);
+      animationWrapper.appendChild(animationRadioLabel);
+    });
+
 
 
     APP.appendChild(participantIDWrapper);
@@ -223,6 +271,7 @@ function init() {
     APP.appendChild(customAudioWrapper);
     APP.appendChild(tooltip);
     APP.appendChild(debugWrapper);
+    APP.appendChild(animationWrapper);
 
     var urlWrapper = document.createElement('div');
     var urlTooltip = document.createElement('div');

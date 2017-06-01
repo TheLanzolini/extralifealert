@@ -1,0 +1,98 @@
+html, body {
+  font-family: Arial;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#app {
+  width: 300px;
+  margin: auto;
+  height: 100%;
+  background-color: rgba(0,0,0,0);
+  overflow: hidden;
+  user-select: none;
+}
+
+#app.green {
+  background-color: #00ff00;
+}
+
+.large .donation {
+  width: 250px;
+  height: 75px;
+}
+
+.medium .donation {
+  width: 200px;
+  height: 50px;
+}
+
+.small .donation {
+  width: 150px;
+  height: 36px;
+}
+
+.large .donation-content, .medium .donation-content {
+  padding-left: 10px;
+}
+
+.large .donation-content div {
+  line-height: 30px;
+}
+
+.medium .donation-content {
+  font-size: 14px;
+}
+
+.medium .donation img {
+  height: 40px;
+}
+
+.small .donation {
+  padding: 0;
+}
+
+.small .donation-content {
+  line-height: 36px;
+  display: flex;
+  width: 100%;
+}
+
+.small .donation-name {
+  align-self: flex-start;
+  margin-right: auto;
+  margin-left: 5px;
+}
+
+.small .donation-amount {
+  align-self: flex-end;
+  margin-left: auto;
+  margin-right: 5px;
+}
+
+.small .donation-content div {
+  line-height: 36px;
+}
+
+.donation {
+  overflow: hidden;
+  padding: 5px;
+  background-color: white;
+  border-bottom: 1px solid #efefef;
+  margin: auto;
+}
+
+.donation img {
+  height: 65px;
+  float: left;
+}
+
+.donation > div {
+  float: left;
+}

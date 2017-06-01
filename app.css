@@ -44,7 +44,7 @@ a:visited {
   user-select: none;
 }
 
-#app.settings label[for]:hover {
+#app.settings label[for]:hover, #app.recent_donations label[for]:hover {
   cursor: pointer;
 }
 
@@ -62,6 +62,15 @@ a:visited {
   text-align: center;
   display: inline-block;
   min-width: 20px;
+}
+
+.recent-donations {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.recent-donations > div {
+  padding: 10px 0;
 }
 
 .back-button {

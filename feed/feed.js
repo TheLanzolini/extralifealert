@@ -1,5 +1,5 @@
 var DONATIONS_PER_INTERVAL = 25;
-var CHECK_INTERVAL = 120000;
+var CHECK_INTERVAL = 60000;
 var donationsQueue = [];
 var donationsInterval;
 var fetchInterval;

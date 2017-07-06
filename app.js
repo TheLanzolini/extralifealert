@@ -34,6 +34,7 @@ function init() {
     var steps = [
       'Log In/Sign up with <a target="_blank" href="http://extra-life.org">Extra Life</a>',
       'Navigate to your profile page (top right dropdown -> profile)',
+      'Click on the event (Extra Life 2017)',
       'Copy your participantID from the URL (the number following "participantID=")',
       'Come back to this page',
       'Click the Settings button below',

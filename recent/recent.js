@@ -1,4 +1,4 @@
-var CHECK_INTERVAL = 60000;
+var CHECK_INTERVAL = 120000;
 var donationsInterval, APP;
 
 var search = location.search.substring(1);

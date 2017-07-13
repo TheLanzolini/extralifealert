@@ -50,7 +50,7 @@ function renderDonations(donations){
     donationAmount.classList.add('donation-amount');
     donationContent.appendChild(donationName);
     donationContent.appendChild(donationAmount);
-    donationAmount.textContent = '$' + donation.donationAmount;
+    donationAmount.textContent = (donation.donationAmount ? '$' : '') + (donation.donationAmount || 'secret amount');
     if(config.size != 'small'){
       donationElem.appendChild(donationAvatar);
     }

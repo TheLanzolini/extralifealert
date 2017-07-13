@@ -122,7 +122,7 @@ function renderFeed(){
         audio.play();
       }
       donationAlert.classList.add(config.animation);
-      donationText.textContent = (donation.donorName || 'Anonymous') + ' has donated $' + donation.donationAmount + '!';
+      donationText.textContent = (donation.donorName || 'Anonymous') + ' has donated '+ (donation.donationAMount ? '$' : '') + (donation.donationAmount || 'secret amount') + '!';
       donationMessage.textContent = (donation.message || '');
       setTimeout(function(){
         donationText.innerHTML = '';

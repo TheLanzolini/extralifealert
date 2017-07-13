@@ -122,8 +122,8 @@ function renderFeed(){
         audio.play();
       }
       donationAlert.classList.add(config.animation);
-      donationText.textContent = donation.donorName + ' has donated $' + donation.donationAmount + '!';
-      donationMessage.textContent = donation.message;
+      donationText.textContent = (donation.donorName || 'Anonymous') + ' has donated $' + donation.donationAmount + '!';
+      donationMessage.textContent = (donation.message || '');
       setTimeout(function(){
         donationText.innerHTML = '';
         donationAlert.classList.remove(config.animation);

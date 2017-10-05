@@ -35,12 +35,12 @@ function init() {
       'Log In/Sign up with <a target="_blank" href="http://extra-life.org">Extra Life</a>',
       'Navigate to your profile page (top right dropdown -> profile)',
       'Click on the event (Extra Life 2017)',
-      'Copy your participantID from the URL (the number following "participantID=")',
+      'Copy your participantID from the address bar (the number following "participantID=")',
       'Come back to this page',
       'Click the Settings button below',
       'Customize your alert box (Optional)',
       'Hit Save to generate your alertbox URL',
-      'Either Capture the alertbox with a BrowserSource Plugin for best results.( <a target="_blank" href="https://obsproject.com/forum/resources/clr-browser-source-plugin-obs-classic-only.22/">OBS</a>, <a target="_blank" href="https://obsproject.com/forum/resources/browser-plugin.115/">OBS Studio</a> ) or with Window Capture.',
+      'Either Capture the alertbox with a BrowserSource Plugin for best results.( <a target="_blank" href="https://obsproject.com/forum/resources/clr-browser-source-plugin-obs-classic-only.22/">OBS</a>, <a target="_blank" href="https://obsproject.com/forum/resources/browser-plugin.115/">OBS Studio</a> NOTE: you don\'t need a plugin if you have the latest OBS Studio) or with Window Capture.',
       'Start Streaming! Your Donations will appear in this window when you get them!'
     ]
     var ol = document.createElement('ol');
